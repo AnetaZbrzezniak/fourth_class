@@ -1,0 +1,19 @@
+<script>
+
+let zdanie = prompt("Podaj dowolne zdanie: ");
+let mapa = new Map();
+
+for(let x of zdanie){
+    if(mapa.has(x) == true){
+        let ile = mapa.get(x);
+        ile++;
+        mapa.set(x, ile);
+    }
+    else{
+        mapa.set(x, 1);
+    }
+}
+
+console.log(mapa);
+
+</script>

@@ -1,0 +1,143 @@
+<script>
+
+    class Kursant{
+    
+        constructor(imie, nazwisko){
+            this.imie = imie;
+            this.nazwisko = nazwisko;
+        }
+    
+    }
+    
+    class Kurs{
+    
+        constructor(nazwa){
+            this.nazwa = nazwa;
+            this.listaKursantow = [];
+        }
+    
+    }
+    
+    let listaKursow = [];
+    
+    while(true){
+    
+        let menu = Number(prompt("1-dodaj kurs, 2-pokaz kursy, 3-usun kurs, 4-dodaj kursanta do kursu, 5-wyswietl kurs wraz z kursantami, 6-usun kursanta z kursu, 7-koniec"));
+    
+        if(menu == 1){
+            let nazwa = prompt("Podaj nazwe kursu:");
+            let nowyKurs = new Kurs(nazwa);
+            listaKursow.push(nowyKurs);
+            console.log("Kurs zostal dodany!");
+        }
+        else if(menu == 2){
+            for(let x of listaKursow){
+                console.log(`Kurs: ${x.nazwa}`);
+            }
+        }
+        else if(menu == 3){
+            let nazwa = prompt("Podaj nazwe kursu:");
+            let znalezione = false;
+            for(let x in listaKursow){
+                if(listaKursow[x].nazwa == nazwa){
+                    znalezione = true;
+
+                    if (listaKursow[x].listaKursantow.length > 0){
+                        cosnole.log("Nie mozna usunac kursu");
+                        break;
+                    }
+                    else{
+                        listaKursow.splice(x, 1);
+                        console.log("Kurs zostal usuniety!");
+                    }
+                }
+            }
+        }
+            
+            //ALE !!!! usunac kurs mozna tylko wtedy kiedy nie ma w nim kursantow
+        
+        else if(menu == 4){
+            let nazwa = prompt("Podaj nazwe kursu:");
+            let imie = prompt("Podaj imie kursanta:");
+            let nazwisko = prompt("Podaj nazwisko kursanta:");
+        
+        
+            let znaleziono = false;
+            for(let x in listaKursow){
+                if(listaKursow[x].nazwa == nazwa){
+                    znaleziono = true;
+                    let nowyKursant = new Kursant(imie, nazwisko);
+            
+                    listaKursow[x].listaKursantow.push(nowyKursant);
+                    console.log("Kursant zostal dodany!");
+                    break;
+                }
+            }
+            if(znaleziono == false){
+                console.log("Kurs nie zostal znaleziony!");
+            }
+        }
+        else if(menu == 5){
+            let nazwa = prompt("Podaj nazwe kursu:");
+    
+            //Kurs: .......
+            //Imię: ... Nazwisko: ....
+            //Imię: ... Nazwisko: ....
+            //Imię: ... Nazwisko: ....
+
+            let znaleziono = false;
+            for(let x of listaKursow){
+                if(x.nazwa == nazwa){
+                    znaleziono = true;
+                    console.log(`Kurs: ${x.nazwa}`);
+            
+                    for(let y of x.listaKursantow){
+            
+                        console.log(`Imię: ${y.imie}, Nazwisko: ${y.nazwisko}`);
+                    }
+                }
+            }
+            if(znaleziono == false){
+                console.log("Kurs nie zostal znaleziony!");
+            }
+        }
+
+        
+        else if(menu == 6){
+            let nazwa = prompt("Podaj nazwe kursu:");
+            let nazwisko = prompt("Podaj nazwisko kursanta:");
+
+            let znalezionoKurs = false;
+            let znalezionoKursanta = false;
+            for(let x of listaKursow){
+                if(x.nazwa == nazwa){
+                    znalezionoKurs = true;
+                    for(let y in x.listaKursantow){
+                        if(x.listaKursantow[y].nazwisko == nazwisko){
+                            znalezionoKursanta = true;
+                        x.listaKursantow.splice(y,1);
+                        console.log("Kursant zostal usuniety!")
+                        break;
+                        }
+                    }
+                    if(znalezionoKursanta = false){
+                        console.log("Kurant nie zostal znaleziony!");
+                    }
+                }
+            }
+
+            if(znalezionoKurs == false){
+                console.log("Kurs nie zostal znaleziony!");
+            }
+
+        }
+                 
+
+
+        else if(menu == 7){
+            break;
+        }
+    
+    }
+
+    </script>

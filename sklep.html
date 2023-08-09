@@ -1,0 +1,118 @@
+<script>
+
+    class Koszyk{
+    
+        constructor(){
+            this.zakupy = new Map();
+        }
+    
+        dodajProdukt(produkt, ilosc){
+            koszyk.set(produkt, ilosc);
+        }
+    
+        usunProdukt(produkt, ilosc){
+
+            if(ilosc < koszyk.ilosc){
+                koszyk.ilosc - ilosc;
+            }
+
+            else if(ilosc = koszyk.ilosc){
+                koszyk.delete(produkt);
+            }
+
+            else if(ilosc > koszyk.ilosc){
+                console.log("Podana ilosc jest za wysoka!");
+            }
+    
+            //nie ma tutaj zadnych promptow !!!!
+            
+            //ilosc w koszyku > ilosci usuwanej
+                //zmiejszamy ilosc produktu
+    
+            //ilosc w koszyku == ilosci usuwanej
+                //usuwamy caly produkt z koszyka
+    
+            //ilosc w koszyku < ilosci usuwanej
+                //komunikat
+        }
+    
+    }
+    
+    let koszyk = new Koszyk();
+    
+    let sklep = new Map();
+    sklep.set("woda", 2.55);
+    sklep.set("sok", 1.55);
+    sklep.set("jogurt", 3.55);
+    
+    while(true){
+    
+        let menu = Number(prompt("1-dodaj produkt, 2-pokaz zawartosc koszyka, 3-usun produkt, 4-kasa/koniec"));
+    
+        if(menu == 1){
+            let produkt = prompt("Podaj nazwe produktu:");
+
+            let znalezione = false;
+            for(let x in sklep){
+                if(sklep.x == produkt){
+                    znalezione = true;
+                    console.log("Produkt jest w sklepie!");
+                    let ilosc = Number(prompt("Podaj ilosc produktu:"));
+                    koszyk.dodajProdukt(produkt, ilosc);
+                    console.log("Produkt zostal dodany!");
+                }
+            }
+
+                if(sklep.x !== produkt){
+                    console.log("Nie ma takiego produktu w sklepie!");
+                }
+        }
+
+        else if(menu == 2){
+            
+            for(let y of koszyk){
+                console.log(`Produkt: ${y.produkt} Ilosc: ${y.ilosc}`);
+            }
+            //Produkt: ....... Ilosc: ....
+            //Produkt: ....... Ilosc: ....
+            //Produkt: ....... Ilosc: ....
+            //Produkt: ....... Ilosc: ....
+        }
+        else if(menu == 3){
+            let produkt = prompt("Podaj nazwe produktu:");
+
+            let znaleziono = false;
+            for(let z of koszyk){
+                if(koszyk[z].produkt == produkt){
+                    znaleziono = true;
+                console.log("Produkt jest w koszyku!");
+                let ilosc = Number(prompt("Podaj ilosc produktu:"));
+                koszyk.usunProdukt(produkt, ilosc);
+                console.log("Podana ilosc zostala usunieta!");
+                }
+            }
+            
+            //o ilosc pytamy wtedy kiedy produkt jest w koszyku 
+        }
+
+        else if(menu == 4){
+            //PARAGON:
+    
+            //Produkt: ..... Ilosc: ..... Cena: ..... Wartosc: ....
+            //Produkt: ..... Ilosc: ..... Cena: ..... Wartosc: ....
+            //Produkt: ..... Ilosc: ..... Cena: ..... Wartosc: ....
+            //Produkt: ..... Ilosc: ..... Cena: ..... Wartosc: ....
+            //RAZEM DO ZAPLATY: .... PLN
+
+            let wartosc = 0;
+            console.log("PARAGON: ");
+
+            for(let a of koszyk){
+                a.wartosc = a.ilosc * a.cena;
+                console.log(`Produkt: ${a.produkt} Ilosc: ${a.ilosc} Cena: ${a.cena} Wartosc: ${a.wartosc}`);
+            }
+            break;
+        }
+    }
+
+    </script>

@@ -1,0 +1,42 @@
+<script>
+
+class Osoba{
+
+constructor(imie, nazwisko){
+    this.imie = imie;
+    this.nazwisko = nazwisko;
+    this.oceny = [];
+}
+
+przedstawSie(){
+    console.log(`Nazywam się ${this.imie} ${this.nazwisko} ${this.oceny}`);
+}
+
+podajSrednia(){
+
+    let suma = 0;
+    for(let x of this.oceny){
+        suma += x;
+    }
+
+    let iloscOcen = this.oceny.length;
+    let srednia = suma / iloscOcen;
+
+    console.log(`Srednia moja ${this.imie} to ${srednia}`)
+}
+}
+
+let os1 = new Osoba("Adam", "Michalski");
+let os2 = new Osoba("Zosia", "Nowak");
+
+os1.oceny.push(3);
+os1.oceny.push(2);
+os1.oceny.push(5);
+
+os2.oceny.push(5);
+os2.oceny.push(5);
+os2.oceny.push(5);
+
+os.podajSrednia();
+
+</script>

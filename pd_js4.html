@@ -1,0 +1,142 @@
+<script>
+
+class Przychodnia{
+
+    constructor(nazwa, miasto){
+        this.nazwa = nazwa;
+        this.miasto = miasto;
+        this.pacjenci = [];
+    }
+} 
+
+class Pacjent{
+
+    constructor(imie, nazwisko){
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.listaChorob = [];
+    }
+}
+
+let listaPrzychodni = [];
+
+
+while(true){
+
+    let menu = Number(prompt("1 - Przychodnia, 2 - Pacjent, 3 - Koniec"));
+
+    if(menu == 1){
+
+        let menu1 = Number(prompt("1 - dodaj przychodnie, 2 - dodaj pacjenta, 3 - lista przychodni, 4 - lista pacjentow w przychodni"));
+
+        if(menu1 == 1){
+            let nazwa = prompt("Podaj nazwe przychodni: ");
+            let miasto = prompt("Podaj miasto przychodni: ");
+
+            let przychodnia = new Przychodnia(nazwa, miasto);
+            listaPrzychodni.push(przychodnia);
+            console.log(`Przychodnia ${nazwa} ${miasto} zostala dodana!`);
+        }
+
+        else if(menu1 == 2){
+            let nazwa = prompt("Podaj nazwe przychodni");
+            let imie = prompt("Podaj imie: ");
+            let nazwisko = prompt("Podaj nazwisko: ");
+
+            let znaleziono = false;
+            for(let x of listaPrzychodni){
+                if(x.nazwa == nazwa){
+                    znaleziono = true;
+                    let pacjent = new Pacjent(imie, nazwisko);
+                    x.pacjenci.push(pacjent);
+                    console.log(`Pacjent ${imie} ${nazwisko} zostal dodany do przychodni ${x.nazwa}`);
+                }
+            }    
+                if(znaleziono == false){
+                    console.log("Nazwa przychodni jest nieprawidlowa!");
+                }
+        }
+
+        else if(menu1 == 3){
+            for(let x of listaPrzychodni){
+                console.log(`Nazwa: ${x.nazwa} Miasto: ${x.miasto}`);
+            }
+        }
+
+       else if(menu1 == 4){
+            let nazwa = prompt("Podaj nazwe przychodni");
+
+
+            let znaleziono = false;
+            for(let x of listaPrzychodni){
+                if(x.nazwa == nazwa){
+                    znaleziono = true;
+                    for(let y of x.pacjenci){
+                        console.log(y.imie, y.nazwisko);
+                    }
+                }
+            }    
+                if(znaleziono == false){
+                    console.log("Nazwa przychodni jest nieprawidlowa!");
+                }
+        }
+
+    
+
+   else if(menu == 2){
+
+        let menu2 = Number(prompt("1 - dodaj chorobe, 2 - lista chorob pacjenta"))
+
+        if(menu2 == 1){
+            let nazwa = prompt("Podaj nazwe przychodni: ");
+
+            let choroba = prompt("Podaj chorobe: ");
+
+
+            for(let x of listaPrzychodni ){
+                if(x.nazwa == nazwa){
+                    let nazwisko = prompt("Podaj nazwisko pacjenta: ");
+                    for(let y of x.pacjenci){
+                        if(y.nazwisko == nazwisko){
+                        y.listaChorob.push(choroba);
+                        console.log(`Choroba ${choroba} zostala dodana do pacjenta ${nazwisko}`);
+                        }
+                        else if(y.nazwisko !== nazwisko){
+                            console.log("Pacjent nie zostal znaleziony!")
+                        }
+                    }
+
+                }
+
+                else if(x.nazwa !== nazwa){
+                    console.log("Nie znaleziono przychodni!");
+                }
+            }
+        }
+
+        else if(menu2 == 2){
+            let nazwa = prompt("Podaj nazwe przychodni: ");
+            let nazwisko = prompt("Podaj nazwisko pacjenta: ");
+
+            for(let v of listaPrzychodni){
+                if(v.nazwa == nazwa){
+                    for(let y of x.nazwa){
+                    if(y.nazwisko == nazwisko){
+                        for(let p of y.choroby)
+                        console.log(p);
+                    }
+                }
+                }
+            }
+        }
+                if(v.nazwisko !== nazwisko){
+                    console.log("Pacjent nie zostal odnaleziony!");
+                }
+    }
+
+   else if(menu == 3){
+        break;
+    }
+}
+}
+</script>

@@ -1,0 +1,126 @@
+<script>
+
+class Student{
+
+constructor(imie, nazwisko){
+    this.imie = imie;
+    this.nazwisko = nazwisko;
+    this.oceny = [];
+    }
+}
+
+let listaStudentow = [];
+
+while(true){
+
+    let menu = Number(prompt("1-dodaj studenta, 2-wypisz studentow, 3-usun studenta, 4-edytuj studenta, 5-dodaj ocene studentowi, 6-wypisz oceny studenta, 7-wypisz studentow wraz ze srednia, 8-koniec"));
+
+    if(menu == 1){
+
+        let imie = prompt("Podaj imie:");
+        let nazwisko = prompt("Podaj nazwisko:");
+
+        let student = new Student(imie, nazwisko);
+        listaStudentow.push(student);
+        console.log("Student zostal dodany!");
+
+    }
+    else if(menu == 2){
+
+        //Imię: ... Nazwisko: ...
+        //Imię: ... Nazwisko: ...
+        //Imię: ... Nazwisko: ...
+
+        for(let x of listaStudentow){
+            console.log(`Imię: ${x.imie} Nazwisko: ${x.nazwisko}`);
+        }
+    }
+    else if(menu == 3){
+        let nazwisko = prompt("Podaj nazwisko:"); 
+
+        let znalezione = false;
+        for(let x in listaStudentow){
+            if(listaStudentow[x].nazwisko == nazwisko){
+                znalenione = true;
+                listaStudentow.splice(x,1);
+                console.log("Student zostal usuniety!");
+                break;
+            }
+        }
+
+        if(znalezione == false){
+            console.log("Student nie zostal znaleziony!")
+        }
+
+    }
+    else if(menu == 4){
+        let nazwisko = prompt("Podaj nazwisko:");
+        let noweImie = prompt("Podaj nowe imie:");
+        let noweNazwisko = prompt("Podaj nowe nazwisko:");
+
+        let znaleziono = false;
+        for(let x of listaStudentow){
+            if(x.nazwisko == nazwisko){
+            znaleziono = true;
+            x.imie = noweImie;
+            x.nazwisko = noweNazwisko;
+            console.log("Dane zostaly zmienione!")
+            break;
+        }
+    }
+
+        if(znaleziono == false){
+            console.log("Student nie zostal znaleziony!")
+        }
+    else if(menu == 5){
+        let nazwisko = prompt("Podaj nazwisko:");
+        let ocena = Number(prompt("Podaj ocenę:"));
+        let znaleziono = false;
+        for(let x of listaStudentow){
+            if(x.nazwisko == nazwisko){
+                znaleziono = true;
+                x.oceny.push(ocena);
+                console.log("Ocena zostala wpisana!");
+                break;
+            }
+        }
+    
+        if(znalezione == false){
+            console.log("Student nie zostal znaleziony!");
+        }
+
+    }
+    else if(menu == 6){
+        let nazwisko = prompt("Podaj nazwisko:");
+        for(let x of listaStudentow){
+            console.log(`Imię: ${x.imie} Nazwisko: ${x.nazwisko} Oceny: ${x.oceny}`);
+        }
+    }
+    else if(menu == 7){
+        //Imię: ... Nazwisko: ... Srednia ocen: ...
+        //Imię: ... Nazwisko: ... Srednia ocen: ...
+        //Imię: ... Nazwisko: ... Srednia ocen: ...
+        //Imię: ... Nazwisko: ... Srednia ocen: ...
+
+        for(let x of listaStudentow){
+
+            let suma = 0;
+            for(let y of x.oceny){
+                suma += y;
+            }
+                srednia = suma/x.oceny.length;
+
+            console.log(`Imię: ${x.imie} Nazwisko: ${x.nazwisko} Srednia: ${srednia}`);
+        }
+    }
+    }
+    else if(menu == 8){
+        break;
+    }
+}
+
+
+
+
+
+</script>

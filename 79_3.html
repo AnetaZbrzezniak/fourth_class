@@ -1,0 +1,88 @@
+<script>
+
+class Pracownik{
+
+    constructor(imie, nazwisko, email, telefon){
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.email = email;
+        this.telefon = telefon;
+    }
+}
+
+let listaPracownikow = [];
+
+while(true){
+
+    let menu = Number(prompt("1-dodaj, 2-pokaz, 3-usun, 4-zmien, 5-koniec"))
+
+    if(menu == 1){
+
+        let imie = prompt("Podaj imie:");
+        let nazwisko = prompt("Podaj nazwisko:");
+        let email = prompt("Podaj email:");
+        let telefon = prompt("Podaj telefon:");
+
+        let pracownik = new Pracownik(imie, nazwisko, email, telefon);
+        listaPracownikow.push(pracownik);
+        console.log("Pracownik zostal dodany!");
+
+    }
+    else if(menu == 2){
+        //Imię: ... Nazwisko: ... Email: ... Telefon: ...
+        //Imię: ... Nazwisko: ... Email: ... Telefon: ...
+        //Imię: ... Nazwisko: ... Email: ... Telefon: ...
+
+        for(let x of listaPracownikow){
+        console.log(`Imię: ${x.imie} Nazwisko: ${x.nazwisko} Email: ${x.email} Telefon: ${x.telefon}`);
+        }
+    }
+
+    else if(menu == 3){
+        let nazwisko = prompt("Podaj nazwisko:");
+
+        let znaleziono = false;
+        for(let x in listaPracownikow){
+            if(listaPracownikow[x].nazwisko == nazwisko){
+            znaleziono = true;
+            listaPracownikow.splice(x, 1);
+            console.log("Pracownik zostal usuniety");
+            break;
+            }
+        }
+
+        if(znaleziono == false){
+            console.log("Pracownik nie zostal znaleziony");
+        }
+
+    else if(menu == 4){
+        let nazwisko = prompt("Podaj nazwisko:");
+        let noweImie = prompt("Podaj nowe imie:");
+        let noweNazwisko = prompt("Podaj nowe nazwisko:");
+        let nowyEmail = prompt("Podaj nowy email:");
+        let nowyTelefon = prompt("Podaj nowy telefon:");
+
+        let znaleziono = false;
+        for(let x of listaPracownikow){
+        if(x.nazwisko == nazwisko)
+            x.imie = noweImie;
+            x.nazwisko = noweNazwisko;
+            x.email = nowyEmail;
+            x.telefon = nowyTelefon;
+            console.log("Dane zostaly zmienione")
+            break;
+        }
+    }
+        if(znaleziono == false){
+            console.log("Pracownik nie zostal znaleziony");
+        }
+
+    else if(menu == 5){
+        break;
+    }
+
+    }
+}
+
+
+</script>
